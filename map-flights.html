@@ -32,9 +32,16 @@
 <script>
 
 L.mapbox.accessToken = 'pk.eyJ1IjoibmV3YW1lcmljYSIsImEiOiIyM3ZnYUtrIn0.57fFgg_iM7S1wLH2GQC71g';
-var map = L.mapbox.map('map', 'newamerica.l89jcfpc');
-map.scrollWheelZoom.disable();
-
+var map = L.mapbox.map('map', 'newamerica.l89jcfpc', {
+        maxZoom: 13,
+        minZoom: 2,
+        
+        tileLayer: {
+            continuousWorld: false,
+            noWrap: true
+        }
+    });
+        map.scrollWheelZoom.disable();
 
 // use the filter function in leaflet to do the filters on the map
 /*var combat =  L.geoJson(data, {
@@ -178,6 +185,8 @@ map.scrollWheelZoom.disable();
             var html = '<h4>' + props.location_descriptive + '</h4>';
             
             html += '<strong>Operating Entity:</strong> ' + props.operating_entity + '<br/>';
+
+            html += '<strong>Dates:</strong> ' + props.date_begun + ' - ' + props.date_ended + '<br/>';
             
             html += '<strong>Drone Type:</strong> ';
               if(props.drone_type == 'N/A'){

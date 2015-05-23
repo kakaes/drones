@@ -32,7 +32,15 @@
 <script>
 
 L.mapbox.accessToken = 'pk.eyJ1IjoibmV3YW1lcmljYSIsImEiOiIyM3ZnYUtrIn0.57fFgg_iM7S1wLH2GQC71g';
-var map = L.mapbox.map('map', 'newamerica.l89jcfpc');
+var map = L.mapbox.map('map', 'newamerica.l89jcfpc',{
+        maxZoom: 13,
+        minZoom: 2,
+        
+        tileLayer: {
+            continuousWorld: false,
+            noWrap: true
+        }
+    });
 map.scrollWheelZoom.disable();
 
         function style(feature) {
@@ -91,14 +99,14 @@ map.scrollWheelZoom.disable();
             var layer = e.target;
 
 
-            if(layer.feature.properties.Regulations_05202015_Country == "United States of America" ||
+            /*if(layer.feature.properties.Regulations_05202015_Country == "United States of America" ||
                 layer.feature.properties.Regulations_05202015_Country == "Russia" ||
                 layer.feature.properties.Regulations_05202015_Country == "Canada" ||
                 layer.feature.properties.Regulations_05202015_Country == "Greenland" ||
                 layer.feature.properties.Regulations_05202015_Country == "Antarctica"){
                 map.fitBounds(layer.getBounds(), {padding: [-200,-200]});
             }
-            else { map.fitBounds(layer.getBounds(), {padding: [200,200]}); }
+            else { map.fitBounds(layer.getBounds(), {padding: [200,200]}); }*/
             
             $('.info').html(layer.feature.properties.popupContent);
 
